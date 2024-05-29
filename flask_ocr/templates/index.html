@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Classification</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        .image-preview-container {
+            position: relative;
+            display: inline-block; /* 캔버스와 텍스트 오버레이를 위한 컨테이너 */
+        }
+        .image-preview {
+            max-width: 100%; /* 화면 너비에 맞게 최대 너비 설정 */
+            border: 1px solid #ccc; /* 테두리 추가 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1); /* 그림자 효과 추가 */
+            margin-top: 20px; /* 상단 여백 추가 */
+        }
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: blue;
+            background-color: rgba(255, 255, 255, 0.5); /* 텍스트 배경을 약간 투명하게 */
+            visibility: hidden; /* 기본적으로 숨김 */
+            pointer-events: none; /* 마우스 이벤트가 뒤의 캔버스로 통과하도록 */
+            font-size: 14px;
+            font-family: Arial;
+        }
+    </style>
+</head>
+<body>
+    <h1>이미지 분류</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="image" onchange="previewImage(this)">
+        <input type="button" value="분류하기" onclick="uploadImage()">
+    </form><br>
+    <div class="image-preview-container">
+        <canvas id="canvas" class="image-preview"></canvas>
+        <div id="overlay"></div>
+    </div>
+    <script>
+        function previewImage(input){
+            let file = input.files[0];
+            let reader = new FileReader();
+            reader.onload = function(e){
+                let img = new Image();
+                img.onload = function(){
+                    let canvas = document.getElementById("canvas");
+                    canvas.width = img.width; // 이미지의 너비로 캔버스 크기 조정
+                    canvas.height = img.height; // 이미지의 높이로 캔버스 크기 조정
+                    let ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0);
+                    canvas.style.display = "block";
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadImage(){
+            let formData = new FormData($("#uploadForm")[0]);
+            $.ajax({
+                type: "POST",
+                url: "/upload_image",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res){
+                    drawBoundingBoxes(res);
+                }
+            });
+        }
+
+        function drawBoundingBoxes(data){
+            let canvas = document.getElementById("canvas");
+            let ctx = canvas.getContext("2d");
+            let overlay = document.getElementById("overlay");
+
+            // 클릭 이벤트 리스너 추가
+            canvas.addEventListener('click', function(e) {
+                data.forEach(item => {
+                    const [x1, y1] = item.bounding_box[0];
+                    const [x2, y2] = item.bounding_box[2];
+                    if (e.offsetX >= x1 && e.offsetX <= x2 && e.offsetY >= y1 && e.offsetY <= y2) {
+                        // 클릭한 바운딩 박스의 텍스트를 알림으로 표시
+                        q = prompt("맞나요? 아니면 살짝 수정해주세요",item.text);
+                        fn_search(q);
+
+
+                    }
+                });
+            });
+            canvas.addEventListener('mousemove', function(e) {
+                let displayText = false;
+                data.forEach(item => {
+                    const [x1, y1] = item.bounding_box[0];
+                    const [x2, y2] = item.bounding_box[2];
+                    if (e.offsetX >= x1 && e.offsetX <= x2 && e.offsetY >= y1 && e.offsetY <= y2) {
+                        overlay.style.left = `${e.offsetX + 10}px`;
+                        overlay.style.top = `${e.offsetY + 10}px`;
+                        overlay.textContent = item.text;
+                        overlay.style.visibility = 'visible';
+                        displayText = true;
+                    }
+                });
+                if (!displayText) {
+                    overlay.style.visibility = 'hidden';
+                }
+            });
+
+            data.forEach(item => {
+                const [x1, y1] = item.bounding_box[0];
+                const [x2, y2] = item.bounding_box[2];
+                ctx.strokeStyle = 'red';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+            });
+        }
+        function fn_search(query){
+             $.ajax({
+                type: "POST",
+                url: "/search",
+                data :JSON.stringify({q:query}),
+                dataType : 'json',
+                success: function(res){
+                    console.log(res);
+                    $(res.items).each(function(i, v){
+                        console.log(v.image);
+                        $("#result").append("<img src="+v.image+" width='200px'>");
+                    });
+                },
+				error:function(e){
+					console.log(e);
+				}
+            });
+        }
+    </script>
+    <div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.my.closet.dao.IClosetDAO">
+<select id="getClosetList" parameterType="ClosetVO" resultType="ClosetVO">
+
+		SELECT b.pcode
+		     , b.qty
+		     , b.closet_no
+		     , c.pname
+		     , c.pname_kr
+		     , c.ptype_name
+		     , c.pgroup_name
+		     , c.gapp_name
+		     , c.detail_desc
+		     , c.price
+		     , d.cgroup_name
+		     , d.img_path
+		     , a.mem_id
+		     , d.cgroup_code
+		FROM members a
+		   , closet b
+		   , prod c
+		   , prod_detail d
+		WHERE a.mem_id = b.mem_id
+		AND   b.pcode = c.pcode(+)
+		AND   b.pcode = d.pcode(+)
+		AND   b.cgroup_code = d.cgroup_code(+)
+		AND b.use_yn ='Y'
+		AND a.mem_id = #{memId}
+		AND del_yn = 'N'
+</select>
+<insert id="closetplus" parameterType="ClosetVO">
+
+	INSERT INTO closet(closet_no, mem_id, pcode, cgroup_code, qty, del_yn) 
+	VALUES(closet_seq.NEXTVAL, #{memId}, #{pcode}, #{cgroupCode}, 1 ,'N')
+
+</insert>
+
+<insert id="prodInsert" parameterType="ClosetVO">
+	<selectKey keyProperty="pcode" order="BEFORE" resultType="String">
+	    SELECT NVL(max(pcode),0) + 1 as pcode
+	    FROM prod
+	</selectKey>
+		INSERT INTO prod (pcode, pname )
+		VALUES (#{pcode}, #{pname})
+</insert>
+
+<insert id="prodDetail" parameterType="ClosetVO">
+	INSERT INTO prod_detail(pcode, cgroup_code, img_path)
+	VALUES(#{pcode}, #{cgroupCode},#{imgPath})
+</insert>
+
+<insert id="closetfind" parameterType="ClosetVO">
+	INSERT INTO closet(closet_no, mem_id, pcode, cgroup_code, qty, del_yn) 
+	VALUES(closet_seq.NEXTVAL, #{memId}, #{pcode}, #{cgroupCode}, 1 ,'N')
+</insert>
+
+<update id="deleteCloset" parameterType="ClosetVO">
+	UPDATE closet
+	SET del_yn = 'Y'
+	WHERE closet_no = #{closetNo}
+
+</update>
+</mapper>

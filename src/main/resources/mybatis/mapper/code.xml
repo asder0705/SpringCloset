@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.my.closet.dao.IClosetDAO">
+
+<select id="onechoice" resultType="ClosetVO">
+	select distinct pgroup_name
+	from prod
+</select>
+
+<select id="twochoice" resultType="ClosetVO" parameterType="ClosetVO">
+
+	select distinct ptype_name
+	from prod 
+	where pgroup_name = #{pgroupName}
+	
+</select>
+
+<select id="threechoice" resultType="ClosetVO">
+	select distinct cgroup_code, cgroup_name 
+	from prod_detail
+</select>
+
+
+<select id="getlist" resultType="ClosetVO" parameterType="ClosetVO">
+select *
+from prod a, prod_detail b
+where a.pcode = b.pcode
+and pgroup_name = #{pgroupName}
+and ptype_name = #{ptypeName}
+
+
+</select>
+
+</mapper>
