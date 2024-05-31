@@ -49,8 +49,8 @@ def convert_to_json(ocr_results):
     return json_data
 
 url = "https://openapi.naver.com/v1/search/shop"
-client_id = "lfSg8_GIvPjg_23n4SRf"
-secret = "HxNwvFne4C"
+client_id = ""
+secret = ""
 
 @app.route('/search', methods=['POST'])
 def search():
