@@ -56,25 +56,25 @@
 <hr>
 <br>
 
-## 캘린더 화면
+## 옷 등록 화면
 <p align="center">
-  <img src="" alt="calendarView">
+  <img src="https://github.com/asder0705/SpringCloset/assets/150253403/5544b476-322f-4bec-b748-dfc4564c96e2" alt="closetupView">
 </p>
 <br>
 <hr>
 <br>
 
-### 일정등록
+### 나의 옷장 화면
 <p align="center">
-  <img src="" alt="create_plan1">
+  <img src="https://github.com/asder0705/SpringCloset/assets/150253403/d808ebdd-0c7e-4491-8030-9b59cd89e642" alt="create_plan1">
 </p>
 <br>
 <hr>
 <br>
 
-- **수정 / 삭제 Modal** 
+### 옷장 코디 화면
 <p align="center">
-  <img src="" alt="edit_plan1">
+  <img src="https://github.com/asder0705/SpringCloset/assets/150253403/d95c6709-fd00-4acd-902c-d12baa70b0b5" alt="edit_plan1">
 </p>
 <br>
 <hr>
