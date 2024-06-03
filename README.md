@@ -61,7 +61,7 @@
   <img src="https://github.com/asder0705/SpringCloset/assets/150253403/5544b476-322f-4bec-b748-dfc4564c96e2" alt="closetupView">
 </p>
 <br>
-- **대분류 중분류를 통하여 옷을 검색 할 수 있고 옷 등록 버튼을 통해 데이터베이스에 추가하 수 있고 아코디언 버튼을 클릭하여 상세정보 설명을 볼 수 있다.**
+- 대분류 중분류를 통하여 옷을 검색 할 수 있고 옷 등록 버튼을 통해 데이터베이스에 추가하 수 있고 아코디언 버튼을 클릭하여 상세정보 설명을 볼 수 있다.
 <hr>
 <br>
 
@@ -70,7 +70,7 @@
   <img src="https://github.com/asder0705/SpringCloset/assets/150253403/d808ebdd-0c7e-4491-8030-9b59cd89e642" alt="create_plan1">
 </p>
 <br>
-- **등록된 옷들을 볼 수 있고 삭제가 가능하다.**
+- 등록된 옷들을 볼 수 있고 삭제가 가능하다.
 <hr>
 <br>
 
@@ -79,28 +79,23 @@
   <img src="https://github.com/asder0705/SpringCloset/assets/150253403/d95c6709-fd00-4acd-902c-d12baa70b0b5" alt="edit_plan1">
 </p>
 <br>
--- **선택된 옷들의 이미지를 slide로 한번에 볼 수 있고 drag and drop 을 통하여 옷을 선택하여 매치 한 후 파일 형태로 저장 할 수 있다.**
+-- 선택된 옷들의 이미지를 slide로 한번에 볼 수 있고 drag and drop 을 통하여 옷을 선택하여 매치 한 후 파일 형태로 저장 할 수 있다.
 <hr>
 <br>
 
-- **일정 수정** 
+- **옷 텍 정보 easyOCR로 찾아오기** 
 <p align="center">
   <img src="" alt="edit_plan2">
 </p>
 <br>
+-- fileupload를 한 뒤 flack를 통하여 이미지 분류 후 네이버API키를 활용해 상품들을 나열한다.
 <hr>
+<p align="center">
+  <img src="" alt="edit_plan2">
+</p>
 <br>
 
-- **하루 종일 Event 처리**
-<p align="center">
-  <img src="" alt="schedule planner with blue and yellow sections, time slots, and labels for different activities and breaks">
-</p>
-<p align="center">
-  <img src="" alt="detailed daily planner with time slots, categories for tasks, breaks, and goals, and color-coded sections">
-</p>
-<br>
-<hr>
-<br>
+
 
 - **일정 추천**
 <p align="center">
