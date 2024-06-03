@@ -50,7 +50,7 @@
 
 ## 메인화면
 <p align="center">
-  <img src="" alt="main">
+  <img src="https://github.com/asder0705/SpringCloset/assets/150253403/3c6a4d56-5e12-4bd7-a7fa-706f529edc17" alt="main">
 </p>
 <br>
 <hr>
