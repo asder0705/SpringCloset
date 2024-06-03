@@ -35,12 +35,6 @@
 
 <br>
 
-## 느낀점 및 보완사항
-### FullCalendar API 사용
-- **API를 사용하면서 일정을 등록할때 일반적으로 ex)시작일자 : 2024.05.05 / 종료일자 : 2024.05.06 이라고 할 때, API에서는 종료일자가 2024.05.07 과 같이 사용.. endDate가 항상 독점적이고, 날짜 범위가 끝나는 시간이 다음 날 0시를 의미하기 때문이라고 함.. 어느 API이건 사용할 때는 Docs를 잘 참고하자..**
-
-### 코드 리팩토링
-- **코드를 짜면서 반복되는 기능들을 함수로 만들어서 하면 코드의 길이가 줄어들고 가독성이 개선될 부분이 많이 있었는데 해당 부분을 고려하지 않고 만들어서 가면 갈 수록 코드의 가독성이 떨어져 작업이 힘들었다.. 추후에 코드 리팩토링을 통해 가독성을 개선이 필요함..**
 
     
 
@@ -85,44 +79,23 @@
 
 - **옷 텍 정보 easyOCR로 찾아오기** 
 <p align="center">
-  <img src="" alt="edit_plan2">
+  <img src=https://github.com/asder0705/SpringCloset/assets/150253403/89bf39b1-7ae9-4994-ac40-2d1468bf8121"" alt="edit_plan2">
+</p>
+<p align="center">
+  <img src="https://github.com/asder0705/SpringCloset/assets/150253403/1d4e3126-c8fe-4f5e-81ee-7341a33f5af5" alt="edit_plan2">
 </p>
 <br>
 -- fileupload를 한 뒤 flack를 통하여 이미지 분류 후 네이버API키를 활용해 상품들을 나열한다.
 <hr>
-<p align="center">
-  <img src="" alt="edit_plan2">
-</p>
-<br>
+
+
+## 느낀점 및 보완사항
+### css
+- **기능에 신경 쓰다 보니 화면이 매끄럽지 못했고 화면 간격이나 margin에 대한 이해가 부족하여 비율이 잘 맞지 못했다. 이런 부분에 있어서 고객이 원하는 바가 있을 수 있으므로 더 공부해야겠다.**
+
+### 디버깅
+- **오류를 해결하는 과정에서 디버깅을 통해 코드를 다시 짜보고 실행해보는 과정에서 성장을 많이 한 것 같다.반복해서 같은 부분이라도 뭐가 들어왔는지 보고 오류를 찾아내서 해결하는 부분에서 문제 해결 능력이 상승하는 것을 느낄 수 있었다.**
 
 
 
-- **일정 추천**
-<p align="center">
-  <img src="" alt="recommendation plan with sections for morning, afternoon, and evening activities, and space for notes">
-</p>
 
-<p align="center">
-  <img src="" alt="recommendation plan with time slots, activities, and goals for different parts of the day">
-</p>
-<br>
-<hr>
-<br>
-
-- **세부 일정 추천**
-<p align="center">
-  <img src="" alt="detailed recommendation plan with categorized sections for tasks, goals, and priorities">
-</p>
-
-<p align="center">
-  <img src="" alt="detailed recommendation plan with time slots, task categories, and spaces for notes and priorities">
-</p>
-<br>
-<hr>
-<br>
-
-
-- **ChatGPT 채팅서비스**
-<p align="center">
-  <img src="" alt="chatGPT chat interface showing a conversation with a user, displaying text input and response sections">
-</p>
